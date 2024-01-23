@@ -21,23 +21,21 @@ console.log('Welcome to the QuizGame'),
     // }
 
     
-    // let count=0, notFound=0;
-    // const resultAnswersArr = Object.values(answers);
-    // const uniqueAnswer = ['HyperText Markup Language','A computer language','WHATWG','Handle navigation through hyperlinks and processes data','Yahoo'];
-    // resultAnswersArr.forEach(response => {
-    //     console.log(`je suis res : ${response}`)
-    //     uniqueAnswer.forEach(element => {
-    //         console.log(`je suis el : ${element}`)
-    //         if(element === response) {
-    //             count++
-    //         } 
-    //     })
+    let count=0, notFound=0;
+    const resultAnswersArr = Object.values(answers);
+    const uniqueAnswer = ['HyperText Markup Language','A computer language','WHATWG','Handle navigation through hyperlinks and processes data','Yahoo'];
+    resultAnswersArr.forEach(response => {
+        console.log(`je suis res : ${response}`)
+        uniqueAnswer.forEach(element => {
+            console.log(`je suis el : ${element}`)
+            if(element === response) {
+                count++
+            } 
+        })
 
-    // }); 
-    // notFound = uniqueAnswer.length - count;
-    // console.log(notFound);
-    // console.log(count);
-    // console.log(`${resultAnswersArr[0]} => numbers questions : ${uniqueAnswer.length}, right answers : ${Math.trunc((count / uniqueAnswer.length) * 100)}% , wrong answers : ${Math.trunc((notFound / uniqueAnswer.length) * 100)}%`)
+    }); 
+    notFound = uniqueAnswer.length - count;
+    console.log(`${resultAnswersArr[0]} => numbers questions : ${uniqueAnswer.length}, right answers : ${Math.trunc((count / uniqueAnswer.length) * 100)}% , wrong answers : ${Math.trunc((notFound / uniqueAnswer.length) * 100)}%`)
  
 })
 
