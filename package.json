@@ -1,0 +1,12 @@
+{
+  "name": "quiz-game",
+  "version": "1.0.0",
+  "description": "aim to create a quiz with multiples questions but only one answere",
+  "main": "quizee.js",
+  "type": "module",
+  "author": "Mancha KEBE",
+  "license": "ISC",
+  "dependencies": {
+    "inquirer": "^9.2.12"
+  }
+}
