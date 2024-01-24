@@ -2,6 +2,14 @@
 import inquirer from "inquirer";
 
 
+let fs = require('fs');
+
+try {  
+    let data = fs.readFileSync('banner.txt', 'utf8');
+    console.log(data.toString());    
+} catch(e) {
+    console.log('Error:', e.stack);
+}
 
 console.log('Welcome to the QuizGame'),
  inquirer
@@ -13,6 +21,11 @@ console.log('Welcome to the QuizGame'),
     {when: (answers) => answers.cmdlineIsPlaying === true, name : 'cmdlineQuestion3', message : 'Who is in charge of his (HTML) regular update ?', type : 'rawlist', choices : ['W3C', 'WHATWG','ECMA', 'ECTA']},
     {when: (answers) => answers.cmdlineIsPlaying === true, name : 'cmdlineQuestion4', message : 'What the HTML rendering engine doesn\'t manages ?', type : 'rawlist',choices : ['Ensure Content Security Policy', 'Implement DOM','Handle navigation through hyperlinks and processes data', 'Transform a HTML Doc into an interractive interface for users']},
     {when: (answers) => answers.cmdlineIsPlaying === true, name : 'cmdlineQuestion5', message : 'To render a webpage, every browsers use browser engine such as...', type : 'rawlist',choices : ['Yahoo', 'Opera','Google Chrome', 'Safari']},
+    {when: (answers) => answers.cmdlineIsPlaying === true, name : 'cmdlineQuestion6', message : 'How do we call the CSS tree', type : 'rawlist',choices : ['CSSOM', 'DOM','AST','DOOM']},
+    {when: (answers) => answers.cmdlineIsPlaying === true, name : 'cmdlineQuestion7', message : 'Why do we represent the CSS structure in tree', type : 'rawlist',choices : ['For performance', 'Similarity with nodes\'s trees','Easier comprehension', 'For all of it']},
+    {when: (answers) => answers.cmdlineIsPlaying === true, name : 'cmdlineQuestion8', message : 'To load the CSS we need to wait...', type : 'rawlist',choices : ['The sunrise', 'HTML','CSS', 'None of them is required']},
+    {when: (answers) => answers.cmdlineIsPlaying === true, name : 'cmdlineQuestion9', message : 'In theses following answers which one is not a CSS selector type', type : 'rawlist',choices : ['*|*', '*#','~', '&&']},
+    // {when: (answers) => answers.cmdlineIsPlaying === true, name : 'cmdlineQuestion10', message : 'To render a webpage, every browsers use browser engine such as...', type : 'rawlist',choices : ['Yahoo', 'Opera','Google Chrome', 'Safari']},
 ])
 .then((answers)=> {
     // for (const property in answers) {
@@ -21,27 +34,32 @@ console.log('Welcome to the QuizGame'),
     // }
 
     
-    // let count=0, notFound=0;
-    // const resultAnswersArr = Object.values(answers);
-    // const uniqueAnswer = ['HyperText Markup Language','A computer language','WHATWG','Handle navigation through hyperlinks and processes data','Yahoo'];
-    // resultAnswersArr.forEach(response => {
-    //     console.log(`je suis res : ${response}`)
-    //     uniqueAnswer.forEach(element => {
-    //         console.log(`je suis el : ${element}`)
-    //         if(element === response) {
-    //             count++
-    //         } 
-    //     })
+ 
+    let count=0, notFound=0;
+    const resultAnswersArr = Object.values(answers);
+    const trueAnswer = ['HyperText Markup Language','A computer language','WHATWG','Handle navigation through hyperlinks and processes data','Yahoo','CSSOM','For all of it', 'HTML','&&'];
+    const candidates = resultAnswersArr.slice(2);
+    const nameUser = resultAnswersArr[0];
+    const isPlayingTrue = resultAnswersArr[1];
 
-    // }); 
-    // notFound = uniqueAnswer.length - count;
-    // console.log(notFound);
-    // console.log(count);
-    // console.log(`${resultAnswersArr[0]} => numbers questions : ${uniqueAnswer.length}, right answers : ${Math.trunc((count / uniqueAnswer.length) * 100)}% , wrong answers : ${Math.trunc((notFound / uniqueAnswer.length) * 100)}%`)
+    if (isPlayingTrue) {
+    candidates.forEach(response => {
+        trueAnswer.forEach(element => {
+            if(element === response) {
+                count++
+            } else {
+
+            }
+        })
+
+    }); 
+    notFound = candidates.length - count;
+    console.log(`${nameUser} => numbers questions : ${candidates.length}, right answers : ${Math.trunc((count / candidates.length) * 100)}% , wrong answers : ${Math.trunc((notFound / candidates.length) * 100)}%`)
+}
  
 })
 
-// console.log(candidate)
+
 
 
 
