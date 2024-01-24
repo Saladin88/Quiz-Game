@@ -23,19 +23,25 @@ console.log('Welcome to the QuizGame'),
     
     let count=0, notFound=0;
     const resultAnswersArr = Object.values(answers);
-    const uniqueAnswer = ['HyperText Markup Language','A computer language','WHATWG','Handle navigation through hyperlinks and processes data','Yahoo'];
-    resultAnswersArr.forEach(response => {
-        console.log(`je suis res : ${response}`)
-        uniqueAnswer.forEach(element => {
-            console.log(`je suis el : ${element}`)
+    const trueAnswer = ['HyperText Markup Language','A computer language','WHATWG','Handle navigation through hyperlinks and processes data','Yahoo', 'CSSOM','For all of it','HTML','&&'];
+    const candidates = resultAnswersArr.slice(2);
+    const nameUser = resultAnswersArr[0];
+    const isPlayingTrue = resultAnswersArr[1];
+
+    if (isPlayingTrue) {
+    candidates.forEach(response => {
+        trueAnswer.forEach(element => {
             if(element === response) {
                 count++
-            } 
+            } else {
+
+            }
         })
 
     }); 
-    notFound = uniqueAnswer.length - count;
-    console.log(`${resultAnswersArr[0]} => numbers questions : ${uniqueAnswer.length}, right answers : ${Math.trunc((count / uniqueAnswer.length) * 100)}% , wrong answers : ${Math.trunc((notFound / uniqueAnswer.length) * 100)}%`)
+    notFound = candidates.length - count;
+    console.log(`${nameUser} => numbers questions : ${candidates.length}, right answers : ${Math.trunc((count / candidates.length) * 100)}% , wrong answers : ${Math.trunc((notFound / candidates.length) * 100)}%`)
+}
  
 })
 
