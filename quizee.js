@@ -23,7 +23,7 @@ console.log('Welcome to the QuizGame'),
     
     let count=0, notFound=0;
     const resultAnswersArr = Object.values(answers);
-    const trueAnswer = ['HyperText Markup Language','A computer language','WHATWG','Handle navigation through hyperlinks and processes data','Yahoo', 'CSSOM','For all of it','HTML','&&'];
+    const trueAnswer = ['HyperText Markup Language','A computer language','WHATWG','Handle navigation through hyperlinks and processes data','Yahoo'];
     const candidates = resultAnswersArr.slice(2);
     const nameUser = resultAnswersArr[0];
     const isPlayingTrue = resultAnswersArr[1];
