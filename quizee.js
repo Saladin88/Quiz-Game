@@ -17,7 +17,8 @@ console.log('Welcome to the QuizGame');
 
 
 const promise2 = new Promise ((resolve)=> { 
-    resolve(
+    setTimeout(()=>{
+        resolve(
     // async function getQuestions () {
     //     const candidates = await Promise.all([
     inquirer.prompt([ 
@@ -33,7 +34,7 @@ const promise2 = new Promise ((resolve)=> {
     {when: (answers) => answers.cmdlineIsPlaying === true, name : 'cmdlineQuestion8', message : 'To load the CSS we need to wait...', type : 'rawlist',choices : ['The sunrise', 'HTML','CSS', 'None of them is required']},
     {when: (answers) => answers.cmdlineIsPlaying === true, name : 'cmdlineQuestion9', message : 'In theses following answers which one is not a CSS selector type', type : 'rawlist',choices : ['*|*', '*#','~', '&&']},
     // {when: (answers) => answers.cmdlineIsPlaying === true, name : 'cmdlineQuestion10', message : 'To render a webpage, every browsers use browser engine such as...', type : 'rawlist',choices : ['Yahoo', 'Opera','Google Chrome', 'Safari']},
-]))})
+]))},600);})
 promise2.then((answers)=> {
     let count=0, notFound=0;
     const resultAnswersArr = Object.values(answers);
