@@ -1,19 +1,26 @@
 
 import inquirer from "inquirer";
+import {createRequire} from "module";
 
 
-let fs = require('fs');
+ async function displayBanner (){
+const require = createRequire(import.meta.url);
+const fs = await require('fs');
+fs.readFile('banner.txt', 'utf8', (err, data) => {
+  if (err) throw err;
+  console.log(data);
+}); 
+ };
+ displayBanner();
+ console.log(displayBanner())
+console.log('Welcome to the QuizGame');
 
-try {  
-    let data = fs.readFileSync('banner.txt', 'utf8');
-    console.log(data.toString());    
-} catch(e) {
-    console.log('Error:', e.stack);
-}
 
-console.log('Welcome to the QuizGame'),
- inquirer
-.prompt([ 
+const promise2 = new Promise ((resolve)=> { 
+    resolve(
+    // async function getQuestions () {
+    //     const candidates = await Promise.all([
+    inquirer.prompt([ 
     {name : 'cmdInvitName', message : 'Write your name', type : 'input', default : 'Guest'},
     {name : 'cmdlineIsPlaying', message : (answers) => ` ${answers.cmdInvitName} Do you wanna play ? yes no`, type : 'confirm' },
     {when: (answers) => answers.cmdlineIsPlaying === true, name : 'cmdlineQuestion1', message : 'What does HTML means ?', type : 'rawlist', choices : ['HyperText Markup Language', ' HigherThan My Love',' HyperTexuel Markup Language', ' HyperText Mark Language']},
@@ -26,24 +33,18 @@ console.log('Welcome to the QuizGame'),
     {when: (answers) => answers.cmdlineIsPlaying === true, name : 'cmdlineQuestion8', message : 'To load the CSS we need to wait...', type : 'rawlist',choices : ['The sunrise', 'HTML','CSS', 'None of them is required']},
     {when: (answers) => answers.cmdlineIsPlaying === true, name : 'cmdlineQuestion9', message : 'In theses following answers which one is not a CSS selector type', type : 'rawlist',choices : ['*|*', '*#','~', '&&']},
     // {when: (answers) => answers.cmdlineIsPlaying === true, name : 'cmdlineQuestion10', message : 'To render a webpage, every browsers use browser engine such as...', type : 'rawlist',choices : ['Yahoo', 'Opera','Google Chrome', 'Safari']},
-])
-.then((answers)=> {
-    // for (const property in answers) {
-    //     console.log(`const resp ${property}:  resp de answers ${answers[property]}`)
-        
-    // }
-
-    
- 
+]))})
+promise2.then((answers)=> {
     let count=0, notFound=0;
     const resultAnswersArr = Object.values(answers);
     const trueAnswer = ['HyperText Markup Language','A computer language','WHATWG','Handle navigation through hyperlinks and processes data','Yahoo','CSSOM','For all of it', 'HTML','&&'];
-    const candidates = resultAnswersArr.slice(2);
+    const candidate = resultAnswersArr.slice(2);
+    console.log(candidate);
     const nameUser = resultAnswersArr[0];
     const isPlayingTrue = resultAnswersArr[1];
 
     if (isPlayingTrue) {
-    candidates.forEach(response => {
+    candidate.forEach(response => {
         trueAnswer.forEach(element => {
             if(element === response) {
                 count++
@@ -53,11 +54,13 @@ console.log('Welcome to the QuizGame'),
         })
 
     }); 
-    notFound = candidates.length - count;
-    console.log(`${nameUser} => numbers questions : ${candidates.length}, right answers : ${Math.trunc((count / candidates.length) * 100)}% , wrong answers : ${Math.trunc((notFound / candidates.length) * 100)}%`)
+    notFound = candidate.length - count;
+    console.log(`${nameUser} => numbers questions : ${candidate.length}, right answers : ${Math.trunc((count / candidate.length) * 100)}% , wrong answers : ${Math.trunc((notFound / candidate.length) * 100)}%`)
 }
  
 })
+
+
 
 
 
